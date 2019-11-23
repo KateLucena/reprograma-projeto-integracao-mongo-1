@@ -7,8 +7,11 @@ const app = express()
 //String de conexão com o mongodb
 //porta padrão do mongo: 27017
 //banco de dados utilizado: reprograma
-
-mongoose.connect("mongodb://admin:reprograma1@ds225902.mlab.com:25902/reprogramameli",  { useNewUrlParser: true });
+//mongodb://admin:reprograma1@ds225902.mlab.com:25902/reprogramameli
+//mongodb://localhost:27017/reprograma
+//mongodb+srv://admin:<admin123>@cluster0-sqx5k.mongodb.net/clientes
+//mongodb+srv://admin:admin123@cluster0-sqx5k.mongodb.net/clientes
+mongoose.connect("mongodb+srv://admin:admin123@cluster0-sqx5k.mongodb.net/clientes",  { useNewUrlParser: true });
 
 //representação da conexão com o banco de dados 
 let db = mongoose.connection;
@@ -34,6 +37,8 @@ app.use(function(req, res, next) {
   )
   next()
 })
+
+app.use(express.static("public"));
 
 app.use(bodyParser.json());
 

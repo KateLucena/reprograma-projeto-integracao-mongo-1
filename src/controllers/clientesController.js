@@ -78,3 +78,18 @@ const validaFormulario = (campos) => {
     return true;
 
 }
+exports.deleteCliente = (req, res) => {
+    const cpf = req.params.cpf;
+
+    Clientes.findOne({cpf}, function(err, cliente){
+        if(err) res.status(500).send(err);
+
+        if(!cliente) return res.status(200).send({message:'Infelizmente não localizamos o CPF'})
+
+    cliente.remove(function (err){
+        if(!err){
+            res.status(200).send({message: 'Cliente removido com sucesso!'})
+        }
+    })
+})
+}
